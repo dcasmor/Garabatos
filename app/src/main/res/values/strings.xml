@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Garabatos</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="appname">Garabatos</string>
+    <string name="appdescription">Desata tu imaginación</string>
+    <string name="draw_linea">Lápiz</string>
+    <string name="draw_circulo">Círculo</string>
+    <string name="draw_cuadrado">Cuadrado</string>
+    <string name="borrar">Borrar</string>
+</resources>
