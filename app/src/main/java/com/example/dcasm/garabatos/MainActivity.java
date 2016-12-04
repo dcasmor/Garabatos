@@ -16,12 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //private Lienzo canvas;
+    private DrawingView drawingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,83 +98,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-    /*class Linea extends Path {
-        Paint paint;
-        Path path;
-
-        public Linea() {
-            path = new Path();
-            paint = new Paint();
-            paint.setAntiAlias(true);
-            paint.setColor(2);
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeJoin(Paint.Join.ROUND);
-            paint.setStrokeWidth(2);
-        }
-
-        public Paint getPaint() {
-            return paint;
-        }
-
-        public Path getPath() {
-            return path;
-        }
-    }*/
-
-    class Papel extends View {
-
-        //private Linea l;
-
-        public Papel(Context context) {
-
-            super(context);
-            //l = new Linea();
-
-        }
-
-        protected void onDraw(Canvas canvas) {
-
-            //super.onDraw(canvas);
-            //canvas.drawPath(l.getPath(), l.getPaint());
-
-            /*canvas.drawRGB(255, 255, 255);
-
-            int ancho = canvas.getWidth();
-
-            int alto = canvas.getHeight();
-
-            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
-
-            canvas.drawBitmap(bmp, (ancho-200)/2, (alto-200)/2, null);
-
-            //dibuja 10 circulos
-
-            Paint pincel1 = new Paint();
-
-            pincel1.setARGB(255, 255, 0, 0);
-
-            pincel1.setStyle(Paint.Style.STROKE); // dibuja solo la figura no rellena
-
-            for (int f = 0; f < 10; f++) {
-
-                canvas.drawCircle(ancho / 3, alto / 4, f * 15, pincel1);
-
-            }
-
-            //dibuja una línea
-
-            canvas.drawLine(10,10,100,200,pincel1);
-
-            // dibuja un rectángulo
-
-            pincel1.setColor(Color.GREEN);
-
-            pincel1.setStyle(Paint.Style.FILL); // rellena la figura
-
-            canvas.drawRect(40,500,200,800,pincel1);*/
-
-        }
-
     }
 }
