@@ -1,11 +1,9 @@
 package com.example.dcasm.garabatos;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +21,8 @@ import android.widget.RelativeLayout;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //private Lienzo canvas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            //Gestión del FAB
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -47,12 +48,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        RelativeLayout content_main = (RelativeLayout) findViewById(R.id.content_main);
-        Lienzo fondo = new Lienzo(this);
-        content_main.addView(fondo);
-        getSupportActionBar().hide();
-
 
     }
 
@@ -104,32 +99,54 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    /*class Linea extends Path {
+        Paint paint;
+        Path path;
 
-    class Lienzo extends View {
+        public Linea() {
+            path = new Path();
+            paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setColor(2);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            paint.setStrokeWidth(2);
+        }
 
+        public Paint getPaint() {
+            return paint;
+        }
 
+        public Path getPath() {
+            return path;
+        }
+    }*/
 
-        public Lienzo(Context context) {
+    class Papel extends View {
+
+        //private Linea l;
+
+        public Papel(Context context) {
 
             super(context);
+            //l = new Linea();
 
         }
 
-
-
         protected void onDraw(Canvas canvas) {
 
-            canvas.drawRGB(0, 0, 255);
+            //super.onDraw(canvas);
+            //canvas.drawPath(l.getPath(), l.getPaint());
+
+            /*canvas.drawRGB(255, 255, 255);
 
             int ancho = canvas.getWidth();
 
             int alto = canvas.getHeight();
 
-            Bitmap bmp = BitmapFactory.decodeResource(getResources(),
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.circle);
 
-                    R.drawable.circle);
-
-            canvas.drawBitmap(bmp, (ancho - 250) / 2, (alto - 200) / 2, null);
+            canvas.drawBitmap(bmp, (ancho-200)/2, (alto-200)/2, null);
 
             //dibuja 10 circulos
 
@@ -155,7 +172,7 @@ public class MainActivity extends AppCompatActivity
 
             pincel1.setStyle(Paint.Style.FILL); // rellena la figura
 
-            canvas.drawRect(40,500,200,800,pincel1);
+            canvas.drawRect(40,500,200,800,pincel1);*/
 
         }
 
