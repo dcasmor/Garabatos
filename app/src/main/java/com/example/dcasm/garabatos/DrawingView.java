@@ -28,7 +28,7 @@ public class DrawingView extends View {
         drawPaint = new Paint();
         drawPaint.setColor(Color.BLACK);
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(20);
+        drawPaint.setStrokeWidth(10);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -61,7 +61,7 @@ public class DrawingView extends View {
                 drawPath.lineTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_UP:
-                drawPath.reset();
+                //drawPath.reset();
                 break;
             default:
                 return false;
@@ -69,5 +69,4 @@ public class DrawingView extends View {
         invalidate();
         return true;
     }
-
 }
