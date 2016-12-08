@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity
 
     private DrawingView drawingView;
 
-    @SuppressWarnings("deprecated")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

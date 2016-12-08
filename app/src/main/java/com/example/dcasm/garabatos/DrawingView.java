@@ -49,8 +49,6 @@ public class DrawingView extends View {
         drawPath.reset();
     }
 
-    public void nuevaLinea(Color c, int grosor){}
-
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
