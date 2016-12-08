@@ -30,6 +30,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_edit"
-        app:backgroundTint="@android:color/black" />
+        app:backgroundTint="@android:color/black"
+        android:onClick="pulsaFab"/>
 
 </android.support.design.widget.CoordinatorLayout>

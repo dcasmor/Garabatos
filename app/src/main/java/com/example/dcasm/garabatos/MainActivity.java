@@ -26,14 +26,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            //Gestión del FAB
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(this, Selector.class);
-                startActivity(i);
-            }
-        });
+        //fab.setOnClickListener(pulsaFab(this));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,6 +38,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         drawingView = (DrawingView) findViewById(R.id.drawing);
+    }
+
+    public void pulsaFab(View view) {
+        startActivity(new Intent(this, Selector.class));
     }
 
     @Override

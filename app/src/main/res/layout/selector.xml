@@ -15,6 +15,7 @@
         android:layout_marginTop="10dp" />
 
     <SeekBar
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
         android:id="@+id/sbGrosor"
@@ -22,7 +23,9 @@
         android:layout_width="250dp"
         android:layout_toStartOf="@+id/tvGrosor"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:max="4"
+        android:progress="2" />
 
     <TextView
         android:text="@string/color"
@@ -59,4 +62,26 @@
         android:layout_marginTop="10dp"
         android:paddingTop="13dp"
         android:textSize="18sp" />
+
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvRojo"
+        android:textAlignment="center"
+        android:paddingTop="3dp"
+        android:textSize="18sp"
+        android:layout_alignEnd="@+id/tvGrosor"
+        android:layout_toEndOf="@+id/sbGrosor"
+        android:layout_alignBottom="@+id/seekBar4"
+        android:layout_alignTop="@+id/seekBar4" />
+
+    <SeekBar
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar4"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toStartOf="@+id/tvRojo"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_width="293dp" />
 </RelativeLayout>
