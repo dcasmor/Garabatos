@@ -10,4 +10,9 @@
     <string name="draw_circulo">Círculo</string>
     <string name="draw_cuadrado">Cuadrado</string>
     <string name="borrar">Borrar</string>
+    <string name="grosor">Grosor</string>
+    <string name="color">Color</string>
+    <string name="rojo">Rojo</string>
+    <string name="verde">Verde</string>
+    <string name="azul">Azul</string>
 </resources>
