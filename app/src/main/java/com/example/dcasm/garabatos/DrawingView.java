@@ -45,6 +45,10 @@ public class DrawingView extends View {
 
     }
 
+    public void limpiar() {
+        drawPath.reset();
+    }
+
     public void nuevaLinea(Color c, int grosor){}
 
     @Override
