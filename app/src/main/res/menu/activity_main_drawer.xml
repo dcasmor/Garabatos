@@ -16,6 +16,15 @@
             android:icon="@mipmap/square" />
     </group>
 
+    <item android:title="Archivo">
+        <menu>
+            <item
+                android:id="@+id/nav_nuevoLienzo"
+                android:title="@string/nuevo"
+                android:icon="@android:drawable/ic_menu_delete" />
+        </menu>
+    </item>
+
     <!--item android:title="Communicate">
         <menu>
             <item

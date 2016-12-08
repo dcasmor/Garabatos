@@ -72,9 +72,6 @@ public class DrawingView extends View {
             case MotionEvent.ACTION_MOVE:
                 drawPath.lineTo(touchX, touchY);
                 break;
-            case MotionEvent.ACTION_UP:
-                //drawPath.reset();
-                break;
             default:
                 return false;
         }
