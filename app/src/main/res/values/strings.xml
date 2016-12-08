@@ -15,4 +15,5 @@
     <string name="rojo">Rojo</string>
     <string name="verde">Verde</string>
     <string name="azul">Azul</string>
+    <string name="selector_default">0</string>
 </resources>

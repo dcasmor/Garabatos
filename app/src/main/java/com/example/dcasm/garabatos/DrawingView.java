@@ -17,23 +17,35 @@ public class DrawingView extends View {
     private int paintColor;
     private Canvas canvasDraw;
     private Bitmap canvasBitmap;
+    private int grosor = 15, r = 0, g = 0, b = 0;
+    private int color;
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setupDrawing();
+        linea();
     }
 
-    public void setupDrawing() {
+    public void linea() {
         drawPath = new Path();
         drawPaint = new Paint();
-        drawPaint.setColor(Color.BLACK);
+        drawPaint.setColor(Color.rgb(r, g, b));
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(10);
+        drawPaint.setStrokeWidth(grosor);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         canvasPaint = new Paint(Paint.DITHER_FLAG);
     }
+
+    public void cuadrado() {
+
+    }
+
+    public void circulo() {
+
+    }
+
+    public void nuevaLinea(Color c, int grosor){}
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
