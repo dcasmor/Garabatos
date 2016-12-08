@@ -65,12 +65,11 @@
 
 
     <TextView
-        android:text="0"
+        android:text="255"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvRojo"
         android:textAlignment="center"
-        android:paddingTop="3dp"
         android:textSize="18sp"
         android:layout_alignEnd="@+id/tvGrosor"
         android:layout_toEndOf="@+id/sbGrosor"
@@ -80,10 +79,10 @@
     <SeekBar
         android:layout_height="wrap_content"
         android:id="@+id/seekBar4"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_toStartOf="@+id/tvRojo"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_width="293dp"
         android:max="254"
-        android:progress="0" />
+        android:progress="0"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        android:layout_width="230dp" />
 </RelativeLayout>
