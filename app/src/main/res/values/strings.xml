@@ -16,4 +16,6 @@
     <string name="verde">Verde</string>
     <string name="azul">Azul</string>
     <string name="selector_default">0</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

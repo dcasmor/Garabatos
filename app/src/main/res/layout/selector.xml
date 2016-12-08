@@ -151,4 +151,22 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
+    <Button
+        android:text="@string/aceptar"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bCancelar"
+        android:layout_alignEnd="@+id/tvAzul"
+        android:id="@+id/bAceptar"
+        android:layout_width="165dp" />
+
+    <Button
+        android:text="@string/cancelar"
+        android:layout_height="wrap_content"
+        android:id="@+id/bCancelar"
+        android:layout_width="165dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginBottom="10dp"
+        android:onClick="prueba(MainActivity)" />
+
 </RelativeLayout>
