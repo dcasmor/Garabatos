@@ -10,17 +10,15 @@ import android.graphics.Bitmap;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class DrawingView extends View {
+public class Lienzo extends View {
 
     private Path drawPath;
     private Paint drawPaint, canvasPaint;
-    private int paintColor;
     private Canvas canvasDraw;
     private Bitmap canvasBitmap;
-    private int grosor = 15, r = 0, g = 0, b = 0;
-    private int color;
+    private int g = 15, r = 0, v = 0, a = 0;
 
-    public DrawingView(Context context, AttributeSet attrs) {
+    public Lienzo(Context context, AttributeSet attrs) {
         super(context, attrs);
         linea();
     }
@@ -28,26 +26,16 @@ public class DrawingView extends View {
     public void linea() {
         drawPath = new Path();
         drawPaint = new Paint();
-        drawPaint.setColor(Color.rgb(r, g, b));
+        drawPaint.setColor(Color.rgb(r, v, a));
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(grosor);
+        drawPaint.setStrokeWidth(g);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         canvasPaint = new Paint(Paint.DITHER_FLAG);
     }
 
-    public void cuadrado() {
-
-    }
-
-    public void circulo() {
-
-    }
-
-    public void limpiar() {
-        drawPath.reset();
-    }
+    public void limpiar() { drawPath.reset(); }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -79,5 +67,17 @@ public class DrawingView extends View {
         }
         invalidate();
         return true;
+    }
+
+    public int getGrosor() { return g/5 - 1; }
+    public int getRojo() { return r; }
+    public int getVerde() { return v; }
+    public int getAzul() { return a; }
+
+    public void setLinea(int g, int r, int v, int a) {
+        this.g = g;
+        this.r = r;
+        this.v = v;
+        this.a = a;
     }
 }

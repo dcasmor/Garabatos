@@ -14,7 +14,7 @@
     tools:showIn="@layout/toolbar_y_fab"
     android:orientation="vertical" >
 
-    <com.example.dcasm.garabatos.DrawingView
+    <com.example.dcasm.garabatos.Lienzo
         android:id="@+id/drawing"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

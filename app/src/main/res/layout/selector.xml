@@ -24,8 +24,7 @@
         android:layout_toStartOf="@+id/tvGrosor"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:max="4"
-        android:progress="2" />
+        android:max="4" />
 
     <TextView
         android:text="@string/color"

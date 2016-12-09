@@ -1,5 +1,6 @@
 package com.example.dcasm.garabatos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ public class Selector extends AppCompatActivity{
     protected SeekBar grosor, rojo, verde, azul;
     protected TextView tvG, tvR, tvV, tvA;
     protected Button bC, bA;
+    private int g, r, v, a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,25 @@ public class Selector extends AppCompatActivity{
         verde = (SeekBar) findViewById(R.id.sbVerde);
         azul = (SeekBar) findViewById(R.id.sbAzul);
 
+        Bundle extras = getIntent().getExtras();
+
+        g = extras.getInt("g");
+        r = extras.getInt("r");
+        v = extras.getInt("v");
+        a = extras.getInt("a");
+
+        grosor.setProgress(g);
+        tvG.setText("" + g);
+
+        rojo.setProgress(r);
+        tvR.setText("" + r);
+
+        verde.setProgress(v);
+        tvV.setText("" + v);
+
+        azul.setProgress(a);
+        tvA.setText("" + a);
+
         bC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { onBackPressed(); }
@@ -38,13 +59,22 @@ public class Selector extends AppCompatActivity{
         bA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent data = new Intent();
+                data.putExtra("g", g);
+                data.putExtra("r", r);
+                data.putExtra("v", v);
+                data.putExtra("a", a);
+                setResult(RESULT_OK, data);
+                finish();
             }
         });
 
         grosor.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) { tvG.setText("" + i); }
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                tvG.setText("" + i);
+                g = i;
+            }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
@@ -52,7 +82,10 @@ public class Selector extends AppCompatActivity{
         });
         rojo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) { tvR.setText("" + i); }
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                tvR.setText("" + i);
+                r = i;
+            }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
@@ -60,7 +93,10 @@ public class Selector extends AppCompatActivity{
         });
         verde.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) { tvV.setText("" + i); }
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                tvV.setText("" + i);
+                v = i;
+            }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
@@ -68,7 +104,10 @@ public class Selector extends AppCompatActivity{
         });
         azul.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) { tvA.setText("" + i); }
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                tvA.setText("" + i);
+                a = i;
+            }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override

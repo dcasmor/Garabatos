@@ -16,7 +16,9 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private DrawingView drawingView;
+    private Lienzo lienzo;
+    private int g, r, v, a;
+    private static final int SELECTOR = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +38,39 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        drawingView = (DrawingView) findViewById(R.id.drawing);
+        lienzo = (Lienzo) findViewById(R.id.drawing);
     }
 
     public void pulsaFab(View view) {
-        startActivity(new Intent(this, Selector.class));
+        g = lienzo.getGrosor();
+        r = lienzo.getRojo();
+        v = lienzo.getVerde();
+        a = lienzo.getAzul();
+
+        Intent i = new Intent(this, Selector.class);
+        i.putExtra("g", g);
+        i.putExtra("r", r);
+        i.putExtra("v", v);
+        i.putExtra("a", a);
+        startActivityForResult(i, SELECTOR);
     }
 
-    public void prueba() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECTOR) {
+            if (resultCode == RESULT_OK) {
+                int grosor = data.getExtras().getInt("g");
+                grosor = (grosor + 1) * 5;
+                int rojo = data.getExtras().getInt("r");
+                int verde = data.getExtras().getInt("v");
+                int azul = data.getExtras().getInt("a");
+                g = grosor;
+                r = rojo;
+                v = verde;
+                a = azul;
+                lienzo.setLinea(grosor, rojo, verde, azul);
+            }
+        }
     }
 
     @Override
@@ -72,7 +99,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            drawingView.limpiar();
+            lienzo.limpiar();
             return true;
         }
 
