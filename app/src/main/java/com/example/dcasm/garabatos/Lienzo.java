@@ -22,11 +22,14 @@ public class Lienzo extends View {
     private Cuadrado cuadrado;
     private ArrayList lista;
     private int g = 15, r = 0, v = 0, a = 0, tipo, posX, posY;
+    private Paint.Style estilo;
+    private float mX, mY, rX, rY;
+    private static final float TOLERANCE = 5;
 
     public Lienzo(Context context, AttributeSet attrs) {
         super(context, attrs);
         tipo = 0;
-        Paint.Style estilo = Paint.Style.STROKE;
+        estilo = Paint.Style.STROKE;
         linea = new Linea(g, r, v, a, estilo);
         circulo = new Circulo(g, r, v, a, estilo);
         cuadrado = new Cuadrado(g, r, v, a, estilo);
@@ -42,8 +45,6 @@ public class Lienzo extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-        //canvas.drawPath(drawPath, drawPaint);
         super.onDraw(canvas);
         for(int i=0; i < lista.size(); i++){
             if(lista.get(i) instanceof Circulo){
@@ -72,17 +73,71 @@ public class Lienzo extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //drawPath.moveTo(touchX, touchY);
-                linea.getPath().moveTo(touchX, touchY);
+                startTouch(touchX, touchY);
                 break;
             case MotionEvent.ACTION_MOVE:
                 //drawPath.lineTo(touchX, touchY);
-                linea.moveTo(touchX, touchY);
+                moveTouch(touchX, touchY);
                 break;
-            default:
-                return false;
+            case MotionEvent.ACTION_UP:
+                upTouch();
+                break;
         }
         invalidate();
         return true;
+    }
+
+    public void startTouch(float x, float y) {
+        if (tipo == 0) {
+            linea.getPath().moveTo(x, y);
+            mX = x;
+            mY = y;
+        }
+        else
+            if (tipo == 1) {
+                cuadrado.getRect().set(x, y, y, x);
+                rX = x;
+                rY = y;
+            }
+        else
+                if (tipo == 2) {
+                    circulo.getRect().set(x, y, y, x);
+                    rX = x;
+                    rY = y;
+                }
+    }
+
+    private void moveTouch(float x, float y) {
+        float dx = Math.abs(x - mX);
+        float dy = Math.abs(y - mY);
+
+        if (dx >= TOLERANCE || dy >= TOLERANCE) {
+            if (tipo == 0)
+                linea.getPath().quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+            else
+            if (tipo == 1)
+                cuadrado.getRect().set(rX, rY, (mX + x - mX), (mY + y - mY));
+            else
+            if (tipo == 2)
+                circulo.getRect().set(rX, rY, (mX + x - mX), (mY + y - mY));
+
+            mX = x;
+            mY = y;
+        }
+    }
+
+    private void upTouch() {
+        if(tipo == 0) {
+            linea.getPath().lineTo(mX, mY);
+            lista.add(linea);
+            linea = new Linea(g, r, v, a, estilo);
+        }else if(tipo == 1){
+            lista.add(cuadrado);
+            cuadrado = new Cuadrado(g, r, v, a, estilo);
+        }else if(tipo == 2){
+            lista.add(circulo);
+            circulo = new Circulo(g, r, v, a, estilo);
+        }
     }
 
     public int getGrosor() { return g/5 - 1; }
@@ -91,12 +146,26 @@ public class Lienzo extends View {
     public int getAzul() { return a; }
 
     public void setGrosorColor(int g, int r, int v, int a) {
+        this.g = g;
+        this.r = r;
+        this.v = v;
+        this.a = a;
         linea.getPaint().setColor(Color.rgb(r, v, a));
         linea.getPaint().setStrokeWidth(g);
         circulo.getPaint().setColor(Color.rgb(r, v, a));
         circulo.getPaint().setStrokeWidth(g);
         cuadrado.getPaint().setColor(Color.rgb(r, v, a));
         cuadrado.getPaint().setStrokeWidth(g);
+    }
+
+    public void cambiar(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public void limpiar() {
+        linea.getPath().reset();
+        lista.clear();
+        invalidate();
     }
 }
 

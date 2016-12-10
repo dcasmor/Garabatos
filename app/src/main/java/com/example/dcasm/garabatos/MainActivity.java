@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             lienzo.limpiar();
-            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -113,9 +112,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_lineas) {
-
+            lienzo.cambiar(0);
         } else if (id == R.id.nav_circulo) {
+            lienzo.cambiar(1);
         } else if (id == R.id.nav_cuadrado) {
+            lienzo.cambiar(2);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
