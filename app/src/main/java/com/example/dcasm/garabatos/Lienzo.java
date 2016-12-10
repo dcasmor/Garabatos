@@ -15,26 +15,23 @@ import java.util.ArrayList;
 
 public class Lienzo extends View {
 
-    private Path drawPath;
-    private Paint drawPaint, canvasPaint;
     private Canvas canvasDraw;
     private Bitmap canvasBitmap;
     private Linea linea;
     private Circulo circulo;
     private Cuadrado cuadrado;
     private ArrayList lista;
-    private int g = 15, r = 0, v = 0, a = 0, tipo = 0, posX, posY;
+    private int g = 15, r = 0, v = 0, a = 0, tipo, posX, posY;
 
     public Lienzo(Context context, AttributeSet attrs) {
         super(context, attrs);
+        tipo = 0;
         Paint.Style estilo = Paint.Style.STROKE;
         linea = new Linea(g, r, v, a, estilo);
         circulo = new Circulo(g, r, v, a, estilo);
         cuadrado = new Cuadrado(g, r, v, a, estilo);
         lista = new ArrayList();
     }
-
-    public void limpiar() { drawPath.reset(); }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -72,7 +69,7 @@ public class Lienzo extends View {
         float touchX = event.getX();
         float touchY = event.getY();
 
-        switch(event.getAction()) {
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //drawPath.moveTo(touchX, touchY);
                 linea.getPath().moveTo(touchX, touchY);
@@ -87,24 +84,6 @@ public class Lienzo extends View {
         invalidate();
         return true;
     }
-
-    /*private void startTouch(float x, float y) {
-        if(tipo == 0) {
-            linea.getPath().moveTo(x, y);
-            mX = x;
-            mY = y;
-        }
-        else if (tipo == 1) {
-            cuadrado.getRect().set(x, y, y, x);
-            rX = x;
-            rY = y;
-        }
-        else if (tipo == 2) {
-            circulo.getRect().set(x,y,y,x);
-            rX = x;
-            rY = y;
-        }
-    }*/
 
     public int getGrosor() { return g/5 - 1; }
     public int getRojo() { return r; }
