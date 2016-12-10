@@ -168,4 +168,13 @@
         android:layout_marginBottom="10dp"
         android:onClick="prueba(MainActivity)" />
 
+    <TextView
+        android:id="@+id/tvMuestra"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="30dp"
+        android:layout_height="15dp"
+        android:layout_width="match_parent"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_alignEnd="@+id/tvAzul" />
+
 </RelativeLayout>

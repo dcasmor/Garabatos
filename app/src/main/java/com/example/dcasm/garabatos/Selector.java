@@ -1,6 +1,7 @@
 package com.example.dcasm.garabatos;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 public class Selector extends AppCompatActivity{
 
     protected SeekBar grosor, rojo, verde, azul;
-    protected TextView tvG, tvR, tvV, tvA;
+    protected TextView tvG, tvR, tvV, tvA, tvMuestra;
     protected Button bC, bA;
     private int g, r, v, a;
 
@@ -27,6 +28,7 @@ public class Selector extends AppCompatActivity{
         tvR = (TextView) findViewById(R.id.tvRojo);
         tvV = (TextView) findViewById(R.id.tvVerde);
         tvA = (TextView) findViewById(R.id.tvAzul);
+        tvMuestra = (TextView) findViewById(R.id.tvMuestra);
 
         grosor = (SeekBar) findViewById(R.id.sbGrosor);
         rojo = (SeekBar) findViewById(R.id.sbRojo);
@@ -51,6 +53,8 @@ public class Selector extends AppCompatActivity{
 
         azul.setProgress(a);
         tvA.setText("" + a);
+
+        tvMuestra.setBackgroundColor(Color.rgb(r, v, a));
 
         bC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +89,7 @@ public class Selector extends AppCompatActivity{
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 tvR.setText("" + i);
                 r = i;
+                tvMuestra.setBackgroundColor(Color.rgb(r, v, a));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
@@ -96,6 +101,7 @@ public class Selector extends AppCompatActivity{
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 tvV.setText("" + i);
                 v = i;
+                tvMuestra.setBackgroundColor(Color.rgb(r, v, a));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
@@ -107,6 +113,7 @@ public class Selector extends AppCompatActivity{
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 tvA.setText("" + i);
                 a = i;
+                tvMuestra.setBackgroundColor(Color.rgb(r, v, a));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {}
