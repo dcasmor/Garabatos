@@ -218,6 +218,7 @@ class Circulo {
         return rect;
     }
 }
+
  class Cuadrado {
      private RectF rect;
      private Paint paint;
