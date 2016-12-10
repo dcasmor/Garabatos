@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
                 r = rojo;
                 v = verde;
                 a = azul;
-                lienzo.setLinea(grosor, rojo, verde, azul);
+                lienzo.setGrosorColor(grosor, rojo, verde, azul);
             }
         }
     }
