@@ -73,16 +73,17 @@ public class Lienzo extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 pulsa(touchX, touchY);
+                invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
                 mueve(touchX, touchY);
+                invalidate();
                 break;
             case MotionEvent.ACTION_UP:
                 levanta();
+                invalidate();
                 break;
         }
-
-        invalidate();
         return true;
     }
 
