@@ -84,6 +84,7 @@ public class Selector extends AppCompatActivity{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
         rojo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -96,6 +97,7 @@ public class Selector extends AppCompatActivity{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
         verde.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -108,6 +110,7 @@ public class Selector extends AppCompatActivity{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
         azul.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {

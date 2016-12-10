@@ -1,9 +1,7 @@
 package com.example.dcasm.garabatos;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -110,13 +108,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_lineas) {
+        if (id == R.id.nav_lineas)
             lienzo.cambiar(0);
-        } else if (id == R.id.nav_circulo) {
+        else if (id == R.id.nav_circulo)
             lienzo.cambiar(1);
-        } else if (id == R.id.nav_cuadrado) {
+        else if (id == R.id.nav_cuadrado)
             lienzo.cambiar(2);
-        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

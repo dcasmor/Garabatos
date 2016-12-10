@@ -20,7 +20,7 @@ public class Lienzo extends View {
     private Linea linea;
     private Circulo circulo;
     private Cuadrado cuadrado;
-    private ArrayList lista;
+    private ArrayList objetos;
     private int g = 15, r = 0, v = 0, a = 0, tipo;
     private Paint.Style estilo;
     private float mX, mY, rX, rY;
@@ -33,7 +33,7 @@ public class Lienzo extends View {
         linea = new Linea(g, r, v, a, estilo);
         circulo = new Circulo(g, r, v, a, estilo);
         cuadrado = new Cuadrado(g, r, v, a, estilo);
-        lista = new ArrayList();
+        objetos = new ArrayList();
     }
 
     @Override
@@ -46,22 +46,19 @@ public class Lienzo extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for(int i=0; i < lista.size(); i++){
-            if(lista.get(i) instanceof Circulo){
-                canvas.drawOval(((Circulo)lista.get(i)).getRect(),((Circulo)lista.get(i)).getPaint());
-            }else if(lista.get(i) instanceof Cuadrado){
-                canvas.drawRect(((Cuadrado)lista.get(i)).getRect(),((Cuadrado)lista.get(i)).getPaint());
-            }else{
-                canvas.drawPath(((Linea)lista.get(i)).getPath(), ((Linea)lista.get(i)).getPaint());
-            }
+        for (int i = 0; i < objetos.size(); i++){
+            if(objetos.get(i) instanceof Circulo)
+                canvas.drawOval(((Circulo) objetos.get(i)).getRect(),((Circulo) objetos.get(i)).getPaint());
+            else if(objetos.get(i) instanceof Cuadrado)
+                    canvas.drawRect(((Cuadrado) objetos.get(i)).getRect(),((Cuadrado) objetos.get(i)).getPaint());
+            else
+                canvas.drawPath(((Linea) objetos.get(i)).getPath(), ((Linea) objetos.get(i)).getPaint());
 
             if(tipo == 0)
                 canvas.drawPath(linea.getPath(), linea.getPaint());
-            else
-            if(tipo == 1)
+            else if(tipo == 1)
                 canvas.drawOval(circulo.getRect(),circulo.getPaint());
-            else
-            if(tipo == 2)
+            else if(tipo == 2)
                 canvas.drawRect(cuadrado.getRect(),cuadrado.getPaint());
 
             canvasDraw = canvas;
@@ -75,13 +72,13 @@ public class Lienzo extends View {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                startTouch(touchX, touchY);
+                pulsa(touchX, touchY);
                 break;
             case MotionEvent.ACTION_MOVE:
-                moveTouch(touchX, touchY);
+                mueve(touchX, touchY);
                 break;
             case MotionEvent.ACTION_UP:
-                upTouch();
+                levanta();
                 break;
         }
 
@@ -89,38 +86,34 @@ public class Lienzo extends View {
         return true;
     }
 
-    public void startTouch(float x, float y) {
+    public void pulsa(float x, float y) {
         if (tipo == 0) {
             linea.getPath().moveTo(x, y);
             mX = x;
             mY = y;
         }
-        else
-            if (tipo == 1) {
-                circulo.getRect().set(x, y, y, x);
-                rX = x;
-                rY = y;
-            }
-        else
-            if (tipo == 2) {
-                cuadrado.getRect().set(x, y, y, x);
-                rX = x;
-                rY = y;
-            }
+        else if (tipo == 1) {
+            circulo.getRect().set(x, y, y, x);
+            rX = x;
+            rY = y;
+        }
+        else if (tipo == 2) {
+            cuadrado.getRect().set(x, y, y, x);
+            rX = x;
+            rY = y;
+        }
     }
 
-    private void moveTouch(float x, float y) {
-        float dx = Math.abs(x - mX);
-        float dy = Math.abs(y - mY);
+    private void mueve(float x, float y) {
+        float auxX = Math.abs(x - mX);
+        float auxY = Math.abs(y - mY);
 
-        if (dx >= TOLERANCE || dy >= TOLERANCE) {
+        if (auxX >= TOLERANCE || auxY >= TOLERANCE) {
             if (tipo == 0)
                 linea.getPath().quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-            else
-            if (tipo == 1)
+            else if (tipo == 1)
                 circulo.getRect().set(rX, rY, (mX + x - mX), (mY + y - mY));
-            else
-            if (tipo == 2)
+            else if (tipo == 2)
                 cuadrado.getRect().set(rX, rY, (mX + x - mX), (mY + y - mY));
 
             mX = x;
@@ -128,25 +121,30 @@ public class Lienzo extends View {
         }
     }
 
-    private void upTouch() {
+    private void levanta() {
         if(tipo == 0) {
             linea.getPath().lineTo(mX, mY);
-            lista.add(linea);
+            objetos.add(linea);
             linea = new Linea(g, r, v, a, estilo);
-        }else if(tipo == 1){
-            lista.add(circulo);
+        } else if(tipo == 1) {
+            objetos.add(circulo);
             circulo = new Circulo(g, r, v, a, estilo);
-        }else if(tipo == 2){
-            lista.add(cuadrado);
+        } else if(tipo == 2) {
+            objetos.add(cuadrado);
             cuadrado = new Cuadrado(g, r, v, a, estilo);
         }
     }
 
     public int getGrosor() { return g/5 - 1; }
+
     public int getRojo() { return r; }
+
     public int getVerde() { return v; }
+
     public int getAzul() { return a; }
 
+
+    //CAMBIAR COLOR Y TIPO DE DIBUJO
     public void setGrosorColor(int g, int r, int v, int a) {
         this.g = g;
         this.r = r;
@@ -164,9 +162,10 @@ public class Lienzo extends View {
         this.tipo = tipo;
     }
 
+    //LIENZO NUEVO
     public void limpiar() {
         linea.getPath().reset();
-        lista.clear();
+        objetos.clear();
         invalidate();
     }
 }
